@@ -1,111 +1,436 @@
+/* ==========================================================================
+   BMI CALCULATOR — STYLES
+   A calm, "health tech" palette (blue primary, emerald accent) over a dark
+   backdrop. Design tokens live in :root so the whole system can be retuned
+   from one place.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #060a16;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-solid: #0f1830;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-strong: rgba(255, 255, 255, 0.22);
+
+  --brand-1: #3b82f6;
+  --brand-2: #10b981;
+  --grad-primary: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+
+  --ink: #f4f6fb;
+  --ink-dim: #a9b2c9;
+  --ink-faint: #6d7591;
+
+  --blue: #60a5fa;
+  --green: #34d399;
+  --amber: #fbbf24;
+  --orange: #fb923c;
+  --red: #f87171;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 12px 32px -12px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 16px 40px -14px rgba(59, 130, 246, 0.4);
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.3s;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
 body {
-  font-family: "Arial", sans-serif;
-  background-image: linear-gradient(to right top, #303705, #515f0a, #758b0d, #99ba0f, #beeb12);
-  background-repeat: no-repeat;
-  background-size: cover;
+  font-family: 'Poppins', 'Arial', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(59, 130, 246, 0.16), transparent 45%),
+    radial-gradient(circle at 85% 90%, rgba(16, 185, 129, 0.16), transparent 45%),
+    var(--bg);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 32px 16px;
 }
 
-.container {
-  max-width: 600px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #ffffff;
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+
+.card {
+  width: 100%;
+  max-width: 460px;
+  background: linear-gradient(180deg, var(--surface), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 5vw, 40px);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-header {
   text-align: center;
+  margin-bottom: 28px;
 }
 
-.container1 h1 {
-  font-size: 2rem;
-  color: #380707;
-  margin: 20px 20px;
-}
-.content{
-  text-align: left;
-}
-
-.label {
-  font-weight: bold;
-  color: #ffffff;
+.card-header h1 {
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  color: #fff;
 }
 
-input[type="text"] {
-  width: 90%;
-  padding: 12px;
-  margin: 8px 0;
-  border: 2px solid #0a8e32;
-  background-color: #b9f860;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
+.subtitle {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 340px;
+  margin: 0 auto;
 }
 
-input[type="text"]:focus {
-  border-color: #0a8e32;
-  box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
-  outline: none;
-}
+/* ==========================================================================
+   FORM
+   ========================================================================== */
 
-label{
-  margin-top: 20px;
-}
-
-h6 {
-  color: #ff4c4c;
-  margin-top: -5px;
-  margin-bottom: 10px;
-}
-
-#bottn {
+.bmi-form {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+
+.input-wrap:focus-within {
+  border-color: var(--brand-1);
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.14);
+}
+
+.input-wrap--error {
+  border-color: var(--red);
+}
+
+.input-wrap--error:focus-within {
+  box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.15);
+}
+
+.input-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  padding-left: 16px;
+  color: var(--ink-faint);
+  transition: color var(--dur) var(--ease);
+}
+
+.input-wrap:focus-within .input-icon {
+  color: var(--brand-1);
+}
+
+.input-wrap input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 14px 12px 14px 10px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.input-wrap input::placeholder {
+  color: var(--ink-faint);
+}
+
+.input-wrap .unit {
+  flex-shrink: 0;
+  padding: 0 16px 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  letter-spacing: 0.4px;
+}
+
+.field-error {
+  min-height: 18px;
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--red);
+}
+
+.form-error {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #fecaca;
+  font-size: 13.5px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin: 4px 0 12px;
+}
+
+/* ==========================================================================
+   ACTIONS
+   ========================================================================== */
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
 }
 
 .btn {
-  background-color: #0a8e32 !important;
+  flex: 1;
   border: none;
-  color: #ffffff !important;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 4px;
+  border-radius: var(--radius-pill);
+  padding: 13px 20px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: 0.2px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: transform var(--dur) var(--ease-spring), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
-.btn:hover {
-  background-color: #ffffff !important;
-  color: #0a8e32 !important;
-  border: 2px solid #0a8e32 !important;
+.btn-primary {
+  background: var(--grad-primary);
+  color: #fff;
+  box-shadow: var(--shadow-glow);
 }
 
-.msg {
-  margin-top: 20px;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  color: #f8f6f3;
-  font-size: 1.1rem;
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px -12px rgba(20, 184, 166, 0.5);
 }
 
-.msg h4 {
-  margin: 10px 0;
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-dim);
+  border: 1.5px solid var(--line-strong);
 }
 
-.msg p {
-  display: inline;
-  font-weight: bold;
-  color: #ffeb3b;
+.btn-ghost:hover {
+  color: #fff;
+  border-color: var(--ink-dim);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   RESULT
+   ========================================================================== */
+
+.result {
+  margin-top: 26px;
+  padding: 22px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  animation: resultIn 0.4s var(--ease-spring);
+}
+
+@keyframes resultIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.result-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.result-number {
+  font-size: clamp(32px, 7vw, 40px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.result-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-badge {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.status-badge--blue {
+  color: var(--blue);
+  background: rgba(96, 165, 250, 0.14);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+}
+.status-badge--green {
+  color: var(--green);
+  background: rgba(52, 211, 153, 0.14);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+.status-badge--amber {
+  color: var(--amber);
+  background: rgba(251, 191, 36, 0.14);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+}
+.status-badge--orange {
+  color: var(--orange);
+  background: rgba(251, 146, 60, 0.14);
+  border: 1px solid rgba(251, 146, 60, 0.35);
+}
+.status-badge--red {
+  color: var(--red);
+  background: rgba(248, 113, 113, 0.14);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+.result-note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  margin-bottom: 18px;
+}
+
+/* Gauge: a segmented track (colored by category) with a marker that slides
+   to the visitor's BMI position. */
+.gauge-track {
+  position: relative;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    90deg,
+    var(--blue) 0%,
+    var(--blue) 28.3%,
+    var(--green) 28.3%,
+    var(--green) 50%,
+    var(--amber) 50%,
+    var(--amber) 66.7%,
+    var(--orange) 66.7%,
+    var(--orange) 83.3%,
+    var(--red) 83.3%,
+    var(--red) 100%
+  );
+  opacity: 0.85;
+}
+
+.gauge-marker {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--surface-solid);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5), 0 4px 10px rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%);
+  transition: left 0.5s var(--ease-spring);
+}
+
+.gauge-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  letter-spacing: 0.2px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .page {
+    padding: 20px 12px;
+  }
+
+  .card {
+    padding: 22px 18px;
+    border-radius: var(--radius-md);
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .gauge-labels span:nth-child(2),
+  .gauge-labels span:nth-child(3) {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 340px) {
+  .result-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
