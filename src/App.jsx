@@ -70,7 +70,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(24px, 5vw, 48px) 16px;
+  padding: clamp(16px, 4vw, 32px) 16px;
 }
 
 /* faint clinical grid texture, purely decorative */
@@ -97,7 +97,7 @@ body {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: clamp(24px, 5vw, 36px);
+  padding: clamp(18px, 4vw, 26px);
   box-shadow: var(--shadow-soft);
   animation: cardIn 0.6s var(--ease-spring) both;
 }
@@ -118,9 +118,9 @@ body {
 
 .icon-badge {
   position: relative;
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 14px;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 10px;
   border-radius: 50%;
   background: var(--grad-primary);
   color: #fff;
@@ -152,16 +152,16 @@ body {
 
 .card-header h1 {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: clamp(21px, 4vw, 25px);
+  font-size: clamp(19px, 4vw, 23px);
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   color: var(--ink);
 }
 
 .subtitle {
-  font-size: 13.5px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--ink-dim);
   max-width: 320px;
   margin: 0 auto;
@@ -172,8 +172,8 @@ body {
 .ecg-strip {
   overflow: hidden;
   width: 100%;
-  height: 26px;
-  margin: 16px 0 22px;
+  height: 20px;
+  margin: 10px 0 16px;
   -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
   mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
 }
@@ -205,7 +205,7 @@ body {
 
 .bmi-form { display: flex; flex-direction: column; gap: 2px; }
 
-.field { margin-bottom: 14px; }
+.field { margin-bottom: 10px; }
 
 .field label {
   display: block;
@@ -214,7 +214,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ink-dim);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .input-wrap {
@@ -228,9 +228,8 @@ body {
 }
 
 .input-wrap:focus-within {
-  border-color: var(--brand-1);
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.10);
 }
 
 .input-wrap--error { border-color: var(--cat-obese2); }
@@ -257,7 +256,7 @@ body {
   background: transparent;
   border: none;
   outline: none;
-  padding: 13px 12px 13px 10px;
+  padding: 10px 12px 10px 10px;
   font-size: 15px;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 500;
@@ -275,7 +274,7 @@ body {
   letter-spacing: 0.4px;
 }
 
-.field-error { min-height: 17px; margin-top: 6px; font-size: 12px; color: var(--cat-obese2); }
+.field-error { min-height: 14px; margin-top: 4px; font-size: 12px; color: var(--cat-obese2); }
 
 .form-error {
   background: rgba(220, 38, 38, 0.08);
@@ -287,16 +286,20 @@ body {
   margin: 4px 0 12px;
 }
 
-button:focus-visible, input:focus-visible {
+button:focus-visible {
   outline: 2px solid var(--brand-1);
   outline-offset: 2px;
+}
+
+.input-wrap input:focus {
+  outline: none;
 }
 
 /* ==========================================================================
    ACTIONS
    ========================================================================== */
 
-.actions { display: flex; gap: 10px; margin-top: 6px; }
+.actions { display: flex; gap: 10px; margin-top: 2px; }
 
 .btn {
   flex: 1;
@@ -306,7 +309,7 @@ button:focus-visible, input:focus-visible {
   gap: 7px;
   border: none;
   border-radius: var(--radius-pill);
-  padding: 13px 18px;
+  padding: 11px 18px;
   font-family: inherit;
   font-weight: 700;
   font-size: 14px;
@@ -328,8 +331,8 @@ button:focus-visible, input:focus-visible {
    ========================================================================== */
 
 .result {
-  margin-top: 24px;
-  padding: 20px;
+  margin-top: 16px;
+  padding: 16px 18px;
   border-radius: var(--radius-md);
   background: var(--surface-muted);
   border: 1px solid var(--line);
@@ -347,14 +350,14 @@ button:focus-visible, input:focus-visible {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .result-value { display: flex; align-items: baseline; gap: 8px; }
 
 .result-number {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: clamp(30px, 7vw, 38px);
+  font-size: clamp(28px, 7vw, 34px);
   font-weight: 700;
   color: var(--ink);
   letter-spacing: -0.01em;
@@ -390,7 +393,7 @@ button:focus-visible, input:focus-visible {
 .status-badge--obese1 { color: var(--cat-obese1); background: rgba(194, 65, 12, 0.10);  border: 1px solid rgba(194, 65, 12, 0.28); }
 .status-badge--obese2 { color: var(--cat-obese2); background: rgba(220, 38, 38, 0.10);  border: 1px solid rgba(220, 38, 38, 0.28); }
 
-.result-note { font-size: 13px; line-height: 1.6; color: var(--ink-dim); margin-bottom: 18px; }
+.result-note { font-size: 13px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 12px; }
 
 .gauge-track {
   position: relative;
@@ -453,7 +456,7 @@ button:focus-visible, input:focus-visible {
   display: flex;
   align-items: flex-start;
   gap: 6px;
-  margin-top: 20px;
+  margin-top: 14px;
   font-size: 11.5px;
   line-height: 1.5;
   color: var(--ink-faint);
@@ -466,7 +469,7 @@ button:focus-visible, input:focus-visible {
    ========================================================================== */
 
 @media (max-width: 480px) {
-  .card { padding: 22px 18px; border-radius: var(--radius-md); }
+  .card { padding: 16px 16px; border-radius: var(--radius-md); }
   .actions { flex-direction: column; }
   .gauge-labels span:nth-child(2), .gauge-labels span:nth-child(3) { font-size: 9.5px; }
 }
@@ -506,7 +509,7 @@ const getCategory = (bmiValue) => BMI_CATEGORIES.find((c) => bmiValue < c.max) ?
    ========================================================================== */
 
 const IconStethoscope = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M6 3V9.2C6 11.85 8.24 14 11 14C13.76 14 16 11.85 16 9.2V3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
     <path d="M6 3H4.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
     <path d="M16 3H17.6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
